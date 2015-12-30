@@ -35,7 +35,7 @@
     } else {
         NSString *title_string = [NSString stringWithFormat:
                                   NSLocalizedString(@"need accessibility", @""),
-                                    [[NSProcessInfo processInfo] processName]];
+                                    [[NSRunningApplication currentApplication] localizedName]];
         NSInteger alert_result = [[NSAlert alertWithMessageText:title_string
                                                   defaultButton:NSLocalizedString(@"Open System Preferences", @"")
                                                 alternateButton:NSLocalizedString(@"Deny", @"")
