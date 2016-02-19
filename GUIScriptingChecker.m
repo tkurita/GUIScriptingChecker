@@ -22,7 +22,7 @@
     }
     
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:@"/System/Library/CoreServices/SystemVersion.plist"];
-    NSComparisonResult result = [[dict objectForKey:@"ProductVersion"] compare:@"10.9" options:NSNumericSearch];
+    NSComparisonResult result = [dict[@"ProductVersion"] compare:@"10.9" options:NSNumericSearch];
     if (NSOrderedAscending == result) { //10.8 or before
         NSInteger alert_result = [[NSAlert
                                    alertWithMessageText:GSCLocalizedString(@"GUI Scripting is not enabled.")
