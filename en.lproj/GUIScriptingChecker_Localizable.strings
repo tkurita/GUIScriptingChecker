@@ -1,0 +1,16 @@
+/* 
+  GUIScriptingChecker_Localizable.strings
+  Created by 栗田 哲郎 on 2016/02/19.
+*/
+
+/* GUIScriptingChecker */
+"Enable GUI Scripting" = "Enable GUI Scripting";
+"Cancel" = "Cancel";
+"GUI Scripting is not enabled." = "GUI Scripting is not enabled.";
+"Enable GUI Scripting ?" = "Would you like me to enable \"GUI Scripting\" ? (\"Enable access for assistive devices\" in System Preferences will be turn on.)";
+
+/* GUIScriptingChecker for Mavericks */
+"Deny" = "Deny";
+"Open System Preferences" = "Open System Preferences";
+"need accessibility" = "\"%@\" would like to control this computer using accessibility features.";
+"Grant access" = "Grant access to this application in Security & privacy preferences, located in System Preferences.";

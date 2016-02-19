@@ -10,6 +10,9 @@
 #import "SystemEvents.h"
 #import "SystemPreferences.h"
 
+#define GSCLocalizedString(key) \
+[[NSBundle mainBundle] localizedStringForKey:(key) value:@"" table:@"GUIScriptingChecker_Localizable"]
+
 @implementation GUIScriptingChecker
 
 + (BOOL)check
@@ -21,11 +24,12 @@
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:@"/System/Library/CoreServices/SystemVersion.plist"];
     NSComparisonResult result = [[dict objectForKey:@"ProductVersion"] compare:@"10.9" options:NSNumericSearch];
     if (NSOrderedAscending == result) { //10.8 or before
-        NSInteger alert_result = [[NSAlert alertWithMessageText:NSLocalizedString(@"GUI Scripting is not enabled.", @"")
-                defaultButton:NSLocalizedString(@"Enable GUI Scripting", @"")
-              alternateButton:NSLocalizedString(@"Cancel", @"")
-                  otherButton:nil
-             informativeTextWithFormat:NSLocalizedString(@"Enable GUI Scripting ?", @"")]
+        NSInteger alert_result = [[NSAlert
+                                   alertWithMessageText:GSCLocalizedString(@"GUI Scripting is not enabled.")
+                                   defaultButton:GSCLocalizedString(@"Enable GUI Scripting")
+                                   alternateButton:GSCLocalizedString(@"Cancel")
+                                   otherButton:nil
+                                   informativeTextWithFormat:@"%@", GSCLocalizedString(@"Enable GUI Scripting ?")]
                                   runModal];
         if (NSAlertDefaultReturn == alert_result) {
             SystemEventsApplication * system_events_app = [SBApplication applicationWithBundleIdentifier:@"com.apple.systemevents"];
@@ -34,14 +38,14 @@
         }
     } else {
         NSString *title_string = [NSString stringWithFormat:
-                                  NSLocalizedString(@"need accessibility", @""),
+                                  GSCLocalizedString(@"need accessibility"),
                                     [[NSRunningApplication currentApplication] localizedName]];
-        NSInteger alert_result = [[NSAlert alertWithMessageText:title_string
-                                                  defaultButton:NSLocalizedString(@"Open System Preferences", @"")
-                                                alternateButton:NSLocalizedString(@"Deny", @"")
-                                                    otherButton:nil
-                                      informativeTextWithFormat:
-                        NSLocalizedString(@"Grant access", @"")]
+        NSInteger alert_result = [[NSAlert
+                                    alertWithMessageText:title_string
+                                    defaultButton:GSCLocalizedString(@"Open System Preferences")
+                                    alternateButton:GSCLocalizedString(@"Deny")
+                                    otherButton:nil
+                                   informativeTextWithFormat:@"%@", GSCLocalizedString(@"Grant access")]
                                   runModal];
         if (NSAlertDefaultReturn == alert_result) {
             SystemPreferencesApplication *sys_pre_app = [SBApplication applicationWithBundleIdentifier:@"com.apple.systempreferences"];
